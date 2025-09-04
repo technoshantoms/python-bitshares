@@ -26,7 +26,7 @@ from .objects import (
     AccountCreateExtensions
 )
 
-default_prefix = "BTS"
+default_prefix = "KES"
 class_idmap = {}
 class_namemap = {}
 
