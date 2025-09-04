@@ -1,8 +1,7 @@
-bitshares.bitshares module
-==========================
+bitshares\.bitshares module
+===========================
 
 .. automodule:: bitshares.bitshares
-   :members:
-   :undoc-members:
-   :show-inheritance:
-   :inherited-members:
+    :members:
+    :undoc-members:
+    :show-inheritance:

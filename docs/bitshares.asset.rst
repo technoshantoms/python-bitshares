@@ -1,8 +1,7 @@
-bitshares.asset module
-======================
+bitshares\.asset module
+=======================
 
 .. automodule:: bitshares.asset
-   :members:
-   :undoc-members:
-   :show-inheritance:
-   :inherited-members:
+    :members:
+    :undoc-members:
+    :show-inheritance:

@@ -1,8 +1,7 @@
-bitshares.instance module
-=========================
+bitshares\.instance module
+==========================
 
 .. automodule:: bitshares.instance
-   :members:
-   :undoc-members:
-   :show-inheritance:
-   :inherited-members:
+    :members:
+    :undoc-members:
+    :show-inheritance:

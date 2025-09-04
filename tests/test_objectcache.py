@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import time
 import unittest
 from bitshares import BitShares, exceptions
@@ -7,6 +6,7 @@ from bitshares.blockchainobject import ObjectCache
 
 
 class Testcases(unittest.TestCase):
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
@@ -17,7 +17,7 @@ class Testcases(unittest.TestCase):
 
     def test_cache(self):
         cache = ObjectCache(default_expiration=1)
-        self.assertEqual(str(cache), "ObjectCacheInMemory(default_expiration=1)")
+        self.assertEqual(str(cache), "ObjectCache(n=0, default_expiration=1)")
 
         # Data
         cache["foo"] = "bar"

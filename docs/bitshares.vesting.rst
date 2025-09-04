@@ -1,8 +1,7 @@
-bitshares.vesting module
-========================
+bitshares\.vesting module
+=========================
 
 .. automodule:: bitshares.vesting
-   :members:
-   :undoc-members:
-   :show-inheritance:
-   :inherited-members:
+    :members:
+    :undoc-members:
+    :show-inheritance:

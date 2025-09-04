@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import unittest
 import mock
 from pprint import pprint
@@ -6,27 +5,41 @@ from bitshares import BitShares
 from bitshares.account import Account
 from bitshares.amount import Amount
 from bitshares.asset import Asset
-from bitshares.price import Order
 from bitshares.instance import set_shared_bitshares_instance
 from bitsharesbase.operationids import getOperationNameForId
-from .fixtures import fixture_data, bitshares
+
+wif = "5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3"
 
 
 class Testcases(unittest.TestCase):
-    def setUp(self):
-        fixture_data()
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.bts = BitShares(
+            "wss://node.testnet.bitshares.eu",
+            nobroadcast=True,
+            # We want to bundle many operations into a single transaction
+            bundle=True,
+            # Overwrite wallet to use this list of wifs only
+            wif={"active": wif}
+        )
+        self.bts.set_default_account("init0")
+        set_shared_bitshares_instance(self.bts)
 
     def test_account(self):
-        Account("init0")
+        Account("witness-account")
         Account("1.2.3")
-        account = Account("init0", full=True)
-        self.assertEqual(account.name, "init0")
+        asset = Asset("1.3.0")
+        symbol = asset["symbol"]
+        account = Account("witness-account", full=True)
+        self.assertEqual(account.name, "witness-account")
         self.assertEqual(account["name"], account.name)
-        self.assertEqual(account["id"], "1.2.100")
+        self.assertEqual(account["id"], "1.2.1")
         self.assertIsInstance(account.balance("1.3.0"), Amount)
         # self.assertIsInstance(account.balance({"symbol": symbol}), Amount)
         self.assertIsInstance(account.balances, list)
-        for _ in account.history(limit=1):
+        for h in account.history(limit=1):
             pass
 
         # BlockchainObjects method
@@ -35,89 +48,75 @@ class Testcases(unittest.TestCase):
         account.cached = False
         self.assertIn("id", account)
         account.cached = False
-        self.assertEqual(account["id"], "1.2.100")
-        self.assertTrue(str(account).startswith("<Account "))
+        self.assertEqual(account["id"], "1.2.1")
+        self.assertEqual(str(account), "<Account 1.2.1>")
         self.assertIsInstance(Account(account), Account)
 
     def test_account_upgrade(self):
-        account = Account("init0")
-        pprint(account)
+        account = Account("witness-account")
         tx = account.upgrade()
         ops = tx["operations"]
         op = ops[0][1]
         self.assertEqual(len(ops), 1)
-        self.assertEqual(getOperationNameForId(ops[0][0]), "account_upgrade")
-        self.assertTrue(op["upgrade_to_lifetime_member"])
-        self.assertEqual(op["account_to_upgrade"], "1.2.100")
+        self.assertEqual(
+            getOperationNameForId(ops[0][0]),
+            "account_upgrade"
+        )
+        self.assertTrue(
+            op["upgrade_to_lifetime_member"]
+        )
+        self.assertEqual(
+            op["account_to_upgrade"],
+            "1.2.1",
+        )
 
     def test_openorders(self):
-        account = Account("xeroc")
-        orders = account.openorders
-        self.assertIsInstance(orders, list)
-
-        # If this test fails, it may be that the order expired on-chain!
-        #
-        # $ uptick sell 100.000 PORNXXX 100000 BTS --account xeroc
-        #
-        for order in orders:
-            self.assertIsInstance(order, Order)
-            self.assertEqual(order["for_sale"]["symbol"], "PORNXXX")
+        account = Account("witness-account")
+        self.assertIsInstance(account.openorders, list)
 
     def test_calls(self):
-        account = Account("init0")
+        account = Account("witness-account")
         self.assertIsInstance(account.callpositions, dict)
 
     def test_whitelist(self):
         from bitsharesbase.operations import Account_whitelist
-
-        account = Account("init0")
+        account = Account("witness-account")
         tx = account.whitelist("committee-account")
         self.assertEqual(len(tx["operations"]), 1)
         self.assertEqual(tx["operations"][0][0], 7)
         self.assertEqual(tx["operations"][0][1]["authorizing_account"], account["id"])
-        self.assertEqual(
-            tx["operations"][0][1]["new_listing"], Account_whitelist.white_listed
-        )
+        self.assertEqual(tx["operations"][0][1]["new_listing"], Account_whitelist.white_listed)
 
     def test_blacklist(self):
         from bitsharesbase.operations import Account_whitelist
-
-        account = Account("init0")
+        account = Account("witness-account")
         tx = account.blacklist("committee-account")
         self.assertEqual(len(tx["operations"]), 1)
         self.assertEqual(tx["operations"][0][0], 7)
         self.assertEqual(tx["operations"][0][1]["authorizing_account"], account["id"])
-        self.assertEqual(
-            tx["operations"][0][1]["new_listing"], Account_whitelist.black_listed
-        )
+        self.assertEqual(tx["operations"][0][1]["new_listing"], Account_whitelist.black_listed)
 
     def test_unlist(self):
         from bitsharesbase.operations import Account_whitelist
-
-        account = Account("init0")
+        account = Account("witness-account")
         tx = account.nolist("committee-account")
         self.assertEqual(len(tx["operations"]), 1)
         self.assertEqual(tx["operations"][0][0], 7)
         self.assertEqual(tx["operations"][0][1]["authorizing_account"], account["id"])
-        self.assertEqual(
-            tx["operations"][0][1]["new_listing"], Account_whitelist.no_listing
-        )
+        self.assertEqual(tx["operations"][0][1]["new_listing"], Account_whitelist.no_listing)
 
     def test_accountupdate(self):
         from bitshares.account import AccountUpdate
-
-        t = {
-            "id": "2.6.29",
-            "lifetime_fees_paid": "44261516129",
-            "most_recent_op": "2.9.0",
-            "owner": "1.2.100",
-            "pending_fees": 0,
-            "pending_vested_fees": 16310,
-            "total_core_in_orders": "6788845277634",
-            "total_ops": 0,
-        }
+        t = {'id': '2.6.29',
+             'lifetime_fees_paid': '44261516129',
+             'most_recent_op': '2.9.0',
+             'owner': '1.2.29',
+             'pending_fees': 0,
+             'pending_vested_fees': 16310,
+             'total_core_in_orders': '6788845277634',
+             'total_ops': 0}
         update = AccountUpdate(t)
-        self.assertEqual(update["owner"], "1.2.100")
+        self.assertEqual(update["owner"], "1.2.29")
         self.assertIsInstance(update.account, Account)
         update.__repr__()
 

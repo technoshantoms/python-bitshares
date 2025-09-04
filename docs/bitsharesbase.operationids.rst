@@ -1,8 +1,7 @@
-bitsharesbase.operationids module
-=================================
+bitsharesbase\.operationids module
+==================================
 
 .. automodule:: bitsharesbase.operationids
-   :members:
-   :undoc-members:
-   :show-inheritance:
-   :inherited-members:
+    :members:
+    :undoc-members:
+    :show-inheritance:

@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
 from .bitshares import BitShares
 
-
 __all__ = [
-    "bitshares",
+    "bitshares"
+    "aes",
     "account",
     "amount",
     "asset",
@@ -18,5 +17,5 @@ __all__ = [
     "committee",
     "vesting",
     "proposal",
-    "message",
+    "message"
 ]

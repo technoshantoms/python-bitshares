@@ -1,8 +1,7 @@
-bitsharesbase.objecttypes module
-================================
+bitsharesbase\.objecttypes module
+=================================
 
 .. automodule:: bitsharesbase.objecttypes
-   :members:
-   :undoc-members:
-   :show-inheritance:
-   :inherited-members:
+    :members:
+    :undoc-members:
+    :show-inheritance:

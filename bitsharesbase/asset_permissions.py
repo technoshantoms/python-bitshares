@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 asset_permissions = {}
 asset_permissions["charge_market_fee"] = 0x01
 asset_permissions["white_list"] = 0x02
@@ -42,5 +41,7 @@ def force_flag(perms, flags):
 def test_permissions(perms, flags):
     for p in flags:
         if not asset_permissions[p] & perms:
-            raise Exception("Permissions prevent you from changing %s!" % p)
+            raise Exception(
+                "Permissions prevent you from changing %s!" % p
+            )
     return True

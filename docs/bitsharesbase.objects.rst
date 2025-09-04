@@ -1,8 +1,7 @@
-bitsharesbase.objects module
-============================
+bitsharesbase\.objects module
+=============================
 
 .. automodule:: bitsharesbase.objects
-   :members:
-   :undoc-members:
-   :show-inheritance:
-   :inherited-members:
+    :members:
+    :undoc-members:
+    :show-inheritance:

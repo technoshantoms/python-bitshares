@@ -1,21 +1,13 @@
 bitshares package
 =================
 
-Subpackages
------------
-
-.. toctree::
-   :maxdepth: 6
-
-   bitshares.aio
-
 Submodules
 ----------
 
 .. toctree::
-   :maxdepth: 6
 
    bitshares.account
+   bitshares.aes
    bitshares.amount
    bitshares.asset
    bitshares.bitshares
@@ -25,8 +17,7 @@ Submodules
    bitshares.committee
    bitshares.dex
    bitshares.exceptions
-   bitshares.genesisbalance
-   bitshares.htlc
+   bitshares.fee
    bitshares.instance
    bitshares.market
    bitshares.memo
@@ -46,7 +37,6 @@ Module contents
 ---------------
 
 .. automodule:: bitshares
-   :members:
-   :undoc-members:
-   :show-inheritance:
-   :inherited-members:
+    :members:
+    :undoc-members:
+    :show-inheritance:

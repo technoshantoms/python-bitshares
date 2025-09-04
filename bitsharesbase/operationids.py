@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #: Operation ids
 ops = [
     "transfer",
@@ -48,44 +47,14 @@ ops = [
     "fba_distribute",
     "bid_collateral",
     "execute_bid",
-    "asset_claim_pool",
-    "asset_update_issuer",
-    "htlc_create",
-    "htlc_redeem",
-    "htlc_redeemed",
-    "htlc_extend",
-    "htlc_refund",
-    "custom_authority_create_operation",
-    "custom_authority_update_operation",
-    "custom_authority_delete_operation",
-    "ticket_create_operation",
-    "ticket_update_operation",
-    "liquidity_pool_create",
-    "liquidity_pool_delete",
-    "liquidity_pool_deposit",
-    "liquidity_pool_withdraw",
-    "liquidity_pool_exchange",
 ]
 operations = {o: ops.index(o) for o in ops}
 
 
 def getOperationNameForId(i):
-    """Convert an operation id into the corresponding string."""
+    """ Convert an operation id into the corresponding string
+    """
     for key in operations:
         if int(operations[key]) is int(i):
             return key
     return "Unknown Operation ID %d" % i
-
-
-def getOperationName(id: str):
-    """This method returns the name representation of an operation given its value as
-    used in the API."""
-    if isinstance(id, str):
-        # Some graphene chains (e.g. steem) do not encode the
-        # operation_type as id but in its string form
-        assert id in operations.keys(), "Unknown operation {}".format(id)
-        return id
-    elif isinstance(id, int):
-        return getOperationNameForId(id)
-    else:
-        raise ValueError

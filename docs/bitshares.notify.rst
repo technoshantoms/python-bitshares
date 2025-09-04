@@ -1,8 +1,7 @@
-bitshares.notify module
-=======================
+bitshares\.notify module
+========================
 
 .. automodule:: bitshares.notify
-   :members:
-   :undoc-members:
-   :show-inheritance:
-   :inherited-members:
+    :members:
+    :undoc-members:
+    :show-inheritance:

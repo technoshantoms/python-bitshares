@@ -5,7 +5,6 @@ Submodules
 ----------
 
 .. toctree::
-   :maxdepth: 6
 
    bitsharesapi.bitsharesnoderpc
    bitsharesapi.exceptions
@@ -15,7 +14,6 @@ Module contents
 ---------------
 
 .. automodule:: bitsharesapi
-   :members:
-   :undoc-members:
-   :show-inheritance:
-   :inherited-members:
+    :members:
+    :undoc-members:
+    :show-inheritance:

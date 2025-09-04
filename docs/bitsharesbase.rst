@@ -5,7 +5,6 @@ Submodules
 ----------
 
 .. toctree::
-   :maxdepth: 6
 
    bitsharesbase.account
    bitsharesbase.asset_permissions
@@ -23,7 +22,6 @@ Module contents
 ---------------
 
 .. automodule:: bitsharesbase
-   :members:
-   :undoc-members:
-   :show-inheritance:
-   :inherited-members:
+    :members:
+    :undoc-members:
+    :show-inheritance:

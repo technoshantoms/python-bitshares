@@ -1,8 +1,7 @@
-bitshares.memo module
-=====================
+bitshares\.memo module
+======================
 
 .. automodule:: bitshares.memo
-   :members:
-   :undoc-members:
-   :show-inheritance:
-   :inherited-members:
+    :members:
+    :undoc-members:
+    :show-inheritance:

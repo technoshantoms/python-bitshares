@@ -1,8 +1,7 @@
-bitshares.worker module
-=======================
+bitshares\.worker module
+========================
 
 .. automodule:: bitshares.worker
-   :members:
-   :undoc-members:
-   :show-inheritance:
-   :inherited-members:
+    :members:
+    :undoc-members:
+    :show-inheritance:

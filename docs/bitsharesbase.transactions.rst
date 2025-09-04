@@ -1,8 +1,7 @@
-bitsharesbase.transactions module
-=================================
+bitsharesbase\.transactions module
+==================================
 
 .. automodule:: bitsharesbase.transactions
-   :members:
-   :undoc-members:
-   :show-inheritance:
-   :inherited-members:
+    :members:
+    :undoc-members:
+    :show-inheritance:
